@@ -5,6 +5,7 @@ import static com.example.trab4bi.R.id.lvDeputados;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -42,7 +43,7 @@ public class ListaDeputadosActivity extends AppCompatActivity  {
         DeputadoController.getDeputados(this, new DeputadoController.DeputadoCallback() {
             @Override
             public void onDeputadoReceived(Deputado deputado) {
-                deputadoAdapter.add(deputado);
+                deputadoAdapter.add(deputado.getDados());
                 lvDeputados.setAdapter(deputadoAdapter);
             }
 
@@ -55,23 +56,21 @@ public class ListaDeputadosActivity extends AppCompatActivity  {
         lvDeputados.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                adapterView.getAdapter().getCount();
-                Deputado deputadoSelecionado = (Deputado) adapterView.getAdapter().getItem(i);
-                // Agora, deputadoSelecionado contém o objeto Deputado clicado
-                System.out.println(i);
-                System.out.println(adapterView.getAdapter().getCount());
 
-                //abrirDetalhesDeputado(deputadoSelecionado);
+                DadosDeputados deputadoSelecionado = (DadosDeputados) adapterView.getAdapter().getItem(i);
+
+                abrirDetalhesDeputado(deputadoSelecionado);
             }
         });
 
+
     }
 
-    private void abrirDetalhesDeputado(Deputado deputado) {
+    private void abrirDetalhesDeputado(DadosDeputados dadosDeputados) {
         // Converter o objeto Deputado para JSON
         ObjectMapper objectMapper = new ObjectMapper();
         try {
-            String deputadoJson = objectMapper.writeValueAsString(deputado);
+            String deputadoJson = objectMapper.writeValueAsString(dadosDeputados);
 
             // Passar a string JSON como extra
             Intent intent = new Intent(this, ListaDespesasDeputadoActivity.class);

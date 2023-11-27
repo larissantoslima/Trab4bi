@@ -20,18 +20,15 @@ import java.util.List;
 
 public class DeputadoAdapter extends BaseAdapter {
     private Context context;
-    private ArrayList<Deputado> lista = new ArrayList<>();
+    private ArrayList<DadosDeputados> lista;
 
-    public DeputadoAdapter(Context context, List<Deputado> deputados) {
+    public DeputadoAdapter(Context context, List<DadosDeputados> deputados) {
         this.context = context;
         this.lista = new ArrayList<>(deputados);
     }
 
-    public void add(Deputado deputado) {
-        lista.add(deputado);
-    }
-    public void addAll(List<Deputado> deputados){
-      this.lista.addAll(deputados);
+    public void add(List<DadosDeputados> dadosDeputados) {
+        lista.addAll(dadosDeputados);
     }
 
     public Context getContext(){
@@ -59,30 +56,18 @@ public class DeputadoAdapter extends BaseAdapter {
             view = LayoutInflater.from(context).inflate(R.layout.item_deputado_activity, viewGroup, false);
         }
 
-        Deputado deputado = lista.get(i);
-        List<DadosDeputados> dadosList = deputado.getDados();
+        DadosDeputados deputadoDados = lista.get(i); // Pega o deputado na posição i
 
-        // Limpar o conteúdo anterior para evitar duplicatas
-        ViewGroup itemContainer = view.findViewById(R.id.itemContainer);
-        itemContainer.removeAllViews();
+        TextView idDeputado = view.findViewById(R.id.tvIdDeputado);
+        TextView nomeDeputado = view.findViewById(R.id.tvNomeDeputado);
+        TextView partidoDeputado = view.findViewById(R.id.tvPartidoDeputado);
 
-        // Iterar sobre a lista de dados e criar visualizações para cada deputado
-        for (DadosDeputados deputadoDados : dadosList) {
-            View deputadoView = LayoutInflater.from(context).inflate(R.layout.item_deputado_activity, viewGroup, false);
-
-            TextView idDeputado = deputadoView.findViewById(R.id.tvIdDeputado);
-            TextView nomeDeputado = deputadoView.findViewById(R.id.tvNomeDeputado);
-            TextView partidoDeputado = deputadoView.findViewById(R.id.tvPartidoDeputado);
-
-            idDeputado.setText(String.valueOf(deputadoDados.getId()));
-            nomeDeputado.setText(deputadoDados.getNome());
-            partidoDeputado.setText(deputadoDados.getSiglaPartido());
-
-            // Adicionar a visualização do deputado ao contêiner
-            itemContainer.addView(deputadoView);
-        }
+        idDeputado.setText(String.valueOf(deputadoDados.getId()));
+        nomeDeputado.setText(deputadoDados.getNome());
+        partidoDeputado.setText(deputadoDados.getSiglaPartido());
 
         return view;
     }
+
 
 }
