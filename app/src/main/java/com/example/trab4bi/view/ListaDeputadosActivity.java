@@ -18,6 +18,7 @@ import com.example.trab4bi.adpter.DeputadoAdapter;
 import com.example.trab4bi.controller.DeputadoController;
 import com.example.trab4bi.model.DadosDeputados;
 import com.example.trab4bi.model.Deputado;
+import com.example.trab4bi.model.Despesa;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -49,6 +50,11 @@ public class ListaDeputadosActivity extends AppCompatActivity  {
 
             @Override
             public void onDeputadoError(String errorMessage) {
+
+            }
+
+            @Override
+            public void onDespesasReceived(Despesa despesa) {
 
             }
         });

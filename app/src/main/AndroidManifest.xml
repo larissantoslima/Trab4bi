@@ -12,9 +12,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Trab4bi"
         tools:targetApi="31">
-        <activity android:name=".view.ListaDeputadosActivity"></activity>
-        <activity android:name=".view.ListaPartidosActivity"></activity>
-        <activity android:name=".view.ListaDespesasDeputadoActivity"></activity>
+        <activity
+            android:name=".view.ListaDeputadosActivity"
+            android:label="DEPUTADOS">
+        </activity>
+        <activity
+            android:name=".view.ListaPartidosActivity"
+            android:label="PARTIDOS">
+        </activity>
+        <activity
+            android:name=".view.ListaDespesasDeputadoActivity"
+            android:label="DESPESAS POR DEPUTADO">
+        </activity>
         <activity
             android:name=".view.MainActivity"
             android:exported="true">

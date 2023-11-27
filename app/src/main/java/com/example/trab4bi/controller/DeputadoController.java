@@ -1,14 +1,11 @@
 package com.example.trab4bi.controller;
 import android.content.Context;
-import android.util.Log;
+
 import com.example.trab4bi.model.Deputado;
+import com.example.trab4bi.model.Despesa;
 import com.example.trab4bi.retrofit.RetrofitConfig;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -20,6 +17,8 @@ public class DeputadoController {
     public interface DeputadoCallback {
         void onDeputadoReceived(Deputado deputado);
         void onDeputadoError(String errorMessage);
+
+        void onDespesasReceived(Despesa despesa);
     }
 
 
@@ -49,21 +48,49 @@ public class DeputadoController {
 
 
     public static Deputado getDeputado(Context ctx, final DeputadoCallback callback) {
-        final Deputado[] returnedDto = {null}; // Array para armazenar o DTO
+        final Deputado[] returnedDto = {null};
 
         getDeputados(ctx, new DeputadoCallback() {
             @Override
-            public void onDeputadoReceived(Deputado deputadoDto) {
-                returnedDto[0] = deputadoDto; // Armazena o DTO retornado
-                callback.onDeputadoReceived(deputadoDto); // Chama o callback
+            public void onDeputadoReceived(Deputado deputado) {
+                returnedDto[0] = deputado;
+                callback.onDeputadoReceived(deputado);
             }
 
             @Override
             public void onDeputadoError(String errorMessage) {
-                callback.onDeputadoError(errorMessage); // Chama o callback de erro
+                callback.onDeputadoError(errorMessage);
+            }
+
+            @Override
+            public void onDespesasReceived(Despesa despesa) {
+
             }
         });
 
         return returnedDto[0];
+    }
+
+
+    public static void getDespesasDeputado(Context ctx, int deputadoId, final DeputadoCallback callback) {
+        try {
+            Call<Despesa> call = new RetrofitConfig().deputadoService().getDespesas(deputadoId);
+
+            call.enqueue(new Callback<Despesa>() {
+                @Override
+                public void onResponse(Call<Despesa> call, Response<Despesa> response) {
+                    Despesa despesa = response.body();
+                    callback.onDespesasReceived(despesa);
+                }
+
+                @Override
+                public void onFailure(Call<Despesa> call, Throwable t) {
+                    callback.onDeputadoError(t.getMessage());
+                }
+            });
+
+        } catch (Exception ex) {
+            callback.onDeputadoError(ex.getMessage());
+        }
     }
 }
