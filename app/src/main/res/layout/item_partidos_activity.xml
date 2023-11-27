@@ -5,22 +5,22 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/itemContainer"
+        android:id="@+id/itemContainerPartido"
         android:orientation="vertical">
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:visibility="gone"
-            android:id="@+id/tvIdDeputado"></TextView>
+            android:id="@+id/tvIdPartido"></TextView>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textStyle="bold"
-            android:id="@+id/tvNomeDeputado"></TextView>
+            android:id="@+id/tvSiglaPartido"></TextView>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/tvPartidoDeputado"></TextView>
+            android:id="@+id/tvNomePartido"></TextView>
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"

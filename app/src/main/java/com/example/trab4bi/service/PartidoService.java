@@ -1,15 +1,14 @@
 package com.example.trab4bi.service;
 
 import com.example.trab4bi.model.Deputado;
+import com.example.trab4bi.model.Partido;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
 
-public interface DeputadoService {
-
-    @GET("deputados")
-    Call<Deputado> getDeputados();
+public interface PartidoService {
+    @GET("partidos")
+    Call<Partido> getPartidos();
 }

@@ -1,7 +1,7 @@
 package com.example.trab4bi.retrofit;
 
 import com.example.trab4bi.service.DeputadoService;
-import com.example.trab4bi.service.DespesaService;
+import com.example.trab4bi.service.PartidoService;
 
 import retrofit2.converter.jackson.JacksonConverterFactory;
 
@@ -25,7 +25,7 @@ public class RetrofitConfig {
     public DeputadoService deputadoService(){
         return this.retrofit.create(DeputadoService.class);
     }
-    public DespesaService despesaService(){
-        return this.retrofit.create(DespesaService.class);
+    public PartidoService partidoService(){
+        return this.retrofit.create(PartidoService.class);
     }
 }

@@ -1,61 +1,26 @@
 package com.example.trab4bi.model;
 
-public class Partido {
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-    private Long id;
-    private String nome;
-    private Long numeroEleitoral;
-    private String sigla;
-    private Status Status;
+import java.util.List;
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class Partido {
+    @JsonProperty("dados")
+    private List<DadosPartido> dados;
 
     public Partido() {
     }
 
-    public Partido(Long id, String nome, Long numeroEleitoral, String sigla, com.example.trab4bi.model.Status status) {
-        this.id = id;
-        this.nome = nome;
-        this.numeroEleitoral = numeroEleitoral;
-        this.sigla = sigla;
-        Status = status;
+    public Partido(List<DadosPartido> dados) {
+        this.dados = dados;
     }
 
-    public Long getId() {
-        return id;
+    public List<DadosPartido> getDados() {
+        return dados;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public Long getNumeroEleitoral() {
-        return numeroEleitoral;
-    }
-
-    public void setNumeroEleitoral(Long numeroEleitoral) {
-        this.numeroEleitoral = numeroEleitoral;
-    }
-
-    public String getSigla() {
-        return sigla;
-    }
-
-    public void setSigla(String sigla) {
-        this.sigla = sigla;
-    }
-
-    public com.example.trab4bi.model.Status getStatus() {
-        return Status;
-    }
-
-    public void setStatus(com.example.trab4bi.model.Status status) {
-        Status = status;
+    public void setDados(List<DadosPartido> dados) {
+        this.dados = dados;
     }
 }
